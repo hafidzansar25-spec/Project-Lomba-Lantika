@@ -1,1 +1,145 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HustleYouth - Micro-Freelance Marketplace</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 500: '#8b5cf6', 600: '#7c3aed', 900: '#4c1d95' }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased selection:bg-brand-500 selection:text-white">
 
+    <!-- Navbar -->
+    <nav class="glass-nav sticky top-0 z-40 w-full px-6 py-4 flex justify-between items-center">
+        <a href="#" onclick="showPage('catalog')" class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
+            <i class="fa-solid fa-bolt mr-2 text-purple-400"></i>HustleYouth
+        </a>
+        <button onclick="showPage('form')" id="nav-btn" class="bg-brand-600 hover:bg-brand-500 text-white px-5 py-2 rounded-full font-medium transition-all shadow-[0_0_15px_rgba(124,58,237,0.5)]">
+            <i class="fa-solid fa-plus mr-2"></i>Buka Jasa
+        </button>
+    </nav>
+
+    <!-- ================= PAGE 1: CATALOG ================= -->
+    <main id="page-catalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 block">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">Temukan <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">Skill</span> Baru</h1>
+            <p class="text-gray-400 max-w-2xl mx-auto">Platform mikro-freelance untuk generasi muda. Jual jasamu atau temukan talenta yang tepat dalam hitungan menit.</p>
+        </div>
+
+        <!-- Search & Filter -->
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-10">
+            <div class="relative w-full md:w-96">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
+                </div>
+                <input type="text" id="search-input" class="w-full bg-white/5 border border-white/10 rounded-full py-3 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all" placeholder="Cari jasa, nama, atau sekolah...">
+            </div>
+            <div id="category-filters" class="flex flex-wrap justify-center gap-2">
+                <button data-category="Semua" class="filter-btn active bg-brand-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-all">Semua</button>
+                <button data-category="Design" class="filter-btn bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 px-4 py-2 rounded-full text-sm font-medium transition-all">Design</button>
+                <button data-category="Video" class="filter-btn bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 px-4 py-2 rounded-full text-sm font-medium transition-all">Video</button>
+                <button data-category="Code" class="filter-btn bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 px-4 py-2 rounded-full text-sm font-medium transition-all">Code</button>
+                <button data-category="Writing" class="filter-btn bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 px-4 py-2 rounded-full text-sm font-medium transition-all">Writing</button>
+            </div>
+        </div>
+
+        <!-- Grid Container -->
+        <div id="gigs-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Cards injected by JS -->
+        </div>
+    </main>
+
+    <!-- ================= PAGE 2: FORM ================= -->
+    <main id="page-form" class="max-w-3xl mx-auto px-4 pt-10 pb-20 hidden">
+        <div class="mb-8 text-center">
+            <h1 class="text-3xl font-bold mb-2">Buka Jasa Baru</h1>
+            <p class="text-gray-400">Tawarkan keahlianmu kepada dunia. Isi formulir di bawah ini dengan lengkap.</p>
+        </div>
+
+        <div class="glass-panel p-6 sm:p-8 rounded-3xl shadow-2xl">
+            <form id="gig-form" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Judul Jasa <span class="text-red-400">*</span></label>
+                    <input type="text" id="title" name="title" required class="form-input" placeholder="Contoh: Desain Logo Minimalis Modern">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Kategori <span class="text-red-400">*</span></label>
+                    <select id="category" name="category" required class="form-input appearance-none cursor-pointer">
+                        <option value="" disabled selected>Pilih Kategori</option>
+                        <option value="Design">Design</option>
+                        <option value="Video">Video</option>
+                        <option value="Code">Code</option>
+                        <option value="Writing">Writing</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Nama Freelancer <span class="text-red-400">*</span></label>
+                        <input type="text" id="freelancer_name" name="freelancer_name" required class="form-input" placeholder="Nama Lengkap">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Asal Sekolah/Kampus <span class="text-red-400">*</span></label>
+                        <input type="text" id="school" name="school" required class="form-input" placeholder="Contoh: SMK Telkom / UI">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Harga (Rp) <span class="text-red-400">*</span></label>
+                        <input type="number" id="price" name="price" required min="10000" class="form-input" placeholder="Minimal 10000">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Nomor WhatsApp <span class="text-red-400">*</span></label>
+                        <input type="tel" id="whatsapp" name="whatsapp" required class="form-input" placeholder="Contoh: 081234567890">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Link Foto/Gambar <span class="text-gray-500">(Opsional)</span></label>
+                    <input type="url" id="image_url" name="image_url" class="form-input" placeholder="https://link-gambar.com/foto.jpg">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Deskripsi Jasa <span class="text-red-400">*</span></label>
+                    <textarea id="description" name="description" required rows="4" class="form-input resize-none" placeholder="Jelaskan detail jasa yang kamu tawarkan..."></textarea>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" id="submit-btn" class="w-full bg-gradient-to-r from-brand-600 to-pink-600 hover:from-brand-500 hover:to-pink-500 text-white font-bold py-4 rounded-xl shadow-[0_0_20px_rgba(124,58,237,0.4)] transition-all transform hover:scale-[1.01]">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Publikasikan Jasa
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Modal Overlay -->
+    <div id="modal-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm transition-opacity">
+        <div id="modal-content" class="bg-[#18181b] border border-white/10 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <!-- Content injected by JS -->
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
