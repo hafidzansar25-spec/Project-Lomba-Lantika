@@ -1,1 +1,67 @@
+/* style.css */
+body {
+    background: linear-gradient(135deg, #09090b 0%, #17111c 50%, #2e1065 100%);
+    min-height: 100vh;
+    color: #e2e8f0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+}
 
+/* Glassmorphism */
+.glass-nav {
+    background: rgba(15, 15, 20, 0.7);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.glass-panel {
+    background: rgba(30, 30, 40, 0.6);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+    background: rgba(30, 30, 40, 0.6);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    border-radius: 1rem; /* rounded-2xl */
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.glass-card:hover {
+    border-color: rgba(139, 92, 246, 0.5);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.3);
+}
+
+/* Forms */
+.form-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: white;
+    outline: none;
+    transition: all 0.2s;
+    box-sizing: border-box;
+}
+
+.form-input::placeholder {
+    color: #6b7280;
+}
+
+.form-input:focus {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 1px #8b5cf6;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #09090b; }
+::-webkit-scrollbar-thumb { background: #7c3aed; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #8b5cf6; }
